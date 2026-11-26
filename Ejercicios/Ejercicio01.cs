@@ -8,10 +8,11 @@ namespace Examen1.Ejercicios
         public int ClienteZona;
         public decimal PesoPaquete;
         public int TipoDeServicio;
-        public static decimal ValorDeclarado;
-        private decimal Total = ValorDeclarado;
+        public  decimal ValorDeclarado;
 
-        private decimal SubTotal = ValorDeclarado;
+        protected decimal SubTotal;
+        protected decimal Total;
+        
        
 
 
@@ -20,11 +21,14 @@ namespace Examen1.Ejercicios
 
         public void Ejecutar()
         {
+            Console.WriteLine("----EJERCICIO01");
+
+
             Console.WriteLine("Ingrese el nombre del cliente:\n");
             ClienteNombre = Console.ReadLine();
 
             Console.WriteLine("Ingrese la zona del cliente:\n"+
-            "1.Local\n 2.Departamental\n 3.Nacional\n");
+            " 1.Local\n 2.Departamental\n 3.Nacional\n");
             do{ClienteZona = Convert.ToInt32(Console.ReadLine());
             if(ClienteZona<1 && ClienteZona>3)
             {
@@ -41,7 +45,7 @@ namespace Examen1.Ejercicios
             }while(PesoPaquete<=0);
 
             Console.WriteLine("Ingrese el tipo de servicio:\n"+
-            "1.Estándar\n 2.Express\n 3.Mismo Día\n");
+            " 1.Estándar\n 2.Express\n 3.Mismo Día\n");
             do{TipoDeServicio = Convert.ToInt32(Console.ReadLine());
             if(TipoDeServicio<1 && TipoDeServicio>3)
             {
@@ -57,6 +61,7 @@ namespace Examen1.Ejercicios
                 }
             }while(ValorDeclarado<=0);
             
+            SubTotal = ValorDeclarado;
         
 
        #region Tarifas
@@ -140,26 +145,20 @@ namespace Examen1.Ejercicios
         Total = SubTotal + RecargoPorSeguro + RecargoPorTipoDeServicio + TotalRecargoClienteZona + TotalRecargoPorPeso - Descuento;
         string TipodeEnvio = ValorDeclarado>5000 ? "Envío Asegurado" : "Envio sin seguro";
             //Recibo
-        Console.WriteLine("----REGISTRO DE TRANSACCIONES REALIZADAS----\n"
-        +$"Recargo por peso: {TotalRecargoPorPeso}\n"
-        +$"Recargo por zona: {TotalRecargoClienteZona}\n"
-        +$"Recargo por servicio: {RecargoPorTipoDeServicio}\n"
-        +$"Recargo por seguro: {RecargoPorSeguro}\n"        
-        +$"Descuento: {Descuento}\n"
-        +$"Subtotal: {SubTotal}\n"
-        +$"Total: {Total}\n"
+        Console.WriteLine("----REGISTRO DE DATOS Y COMPROBANTE DE PAGO----\n"
+        +$"Nombre del Cliente: {ClienteNombre}L\n"
+        +$"Zona Vivencia: {ClienteZona}L\n"
+        +$"Recargo por peso: {TotalRecargoPorPeso}L\n"
+        +$"Recargo por zona: {TotalRecargoClienteZona}L\n"
+        +$"Recargo por servicio: {RecargoPorTipoDeServicio}L\n"
+        +$"Recargo por seguro: {RecargoPorSeguro}L\n"        
+        +$"Descuento: {Descuento}L\n"
+        +$"Subtotal: {SubTotal}L\n"
+        +$"Total: {Total} Lempiras Exactos\n"
 
         +$"Tipo de envío:{TipodeEnvio}\n"
         );
-
-            
-
-            
-            
-            
-            
-            
-        }
+    }
 
     
     }
